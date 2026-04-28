@@ -9,7 +9,7 @@ const path = require('path');
 const MemoryStore = require('memorystore')(session);
 const fs = require('fs');
 const { exec, spawn } = require("child_process");
-const BASE_URL = "http://localhost:3500";
+const BASE_URL = "https://mitsuri-api.onrender.com";
 
 
 const {
