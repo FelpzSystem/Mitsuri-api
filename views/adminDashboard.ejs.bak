@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mitsuri Panel - Users</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #ffd6e8, #d9fff3);
+    min-height: 100vh;
+    color: #2b2b2b;
+}
+
+/* HEADER */
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    z-index: 10;
+}
+
+.menu-toggle {
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* MENU */
+.menu-container {
+    position: fixed;
+    top: 0;
+    left: -260px;
+    width: 250px;
+    height: 100%;
+    background: linear-gradient(180deg, #ffb6d5, #aef7df);
+    padding: 20px;
+    transition: 0.3s;
+    box-shadow: 5px 0 20px rgba(0,0,0,0.2);
+}
+
+.menu-container.show-menu {
+    left: 0;
+}
+
+.close-button {
+    font-size: 22px;
+    cursor: pointer;
+}
+
+/* TITLE */
+h1 {
+    margin-top: 90px;
+    text-align: center;
+    font-size: 28px;
+    color: #ff4fa3;
+    text-shadow: 0 2px 10px rgba(255,79,163,0.3);
+}
+
+/* SEARCH */
+form {
+    text-align: center;
+    margin-top: 20px;
+}
+
+input[type="text"] {
+    width: 80%;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(90deg, #ff4fa3, #7fffd4);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+/* CARDS */
+.video-container {
+    width: 90%;
+    margin: 30px auto;
+    padding: 20px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.user-card {
+    padding: 15px;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #fff, #fdfdfd);
+    margin-bottom: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* BUTTONS */
+.flex {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.deletar {
+    background: #ff4d6d;
+}
+
+.deletar:hover {
+    background: #ff1f4b;
+}
+
+/* MENU CLOSE */
+.menu-container h3 {
+    margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- MENU -->
+<div class="menu-container" id="menu">
+    <span class="close-button" onclick="toggleMenu()">✖</span>
+    <h3>🌸 Mitsuri Menu</h3>
+</div>
+
+<!-- HEADER -->
+<div class="header">
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+</div>
+
+<!-- TITLE -->
+<h1>💚 Lista de Logins</h1>
+
+<!-- SEARCH -->
+<form action="/search" method="GET">
+    <input type="text" name="search" placeholder="Pesquisar usuário...">
+    <br>
+    <button type="submit">Pesquisar</button>
+</form>
+
+<!-- USERS -->
+<div class="video-container">
+
+<% users.forEach((user)=> { %>
+
+    <div class="user-card">
+
+        <span>👤 Usuário: <%= user.username %></span><br>
+        <span>🔑 Senha: <%= user.password %></span><br>
+        <span>🧿 Key: <%= user.key %></span><br>
+        <span>💰 Saldo: <%= user.saldo %></span>
+
+        <div class="flex">
+            <button class="deletar" onclick="confirmDelete('<%= user.username %>')">Deletar</button>
+            <a href="/editar/<%= user.username %>">
+                <button>Editar</button>
+            </a>
+        </div>
+
+    </div>
+
+<% }) %>
+
+</div>
+
+<script>
+function confirmDelete(username) {
+    if (confirm('Tem certeza que deseja deletar este usuário?')) {
+        window.location.href = '/deletar/' + username;
+    }
+}
+
+function toggleMenu() {
+    document.getElementById('menu').classList.toggle('show-menu');
+}
+</script>
+
+</body>
+</html>

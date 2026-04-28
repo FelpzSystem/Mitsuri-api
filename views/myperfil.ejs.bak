@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Profile - AniKit</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+
+body{
+  background:url('https://i.postimg.cc/DZBZgy1f/b72a5dc0dba417c71f8e6a135c2dd001.jpg') no-repeat center center fixed;
+  background-size:cover;
+  color:#fff;
+}
+
+/* overlay */
+body::before{
+  content:"";
+  position:fixed;
+  width:100%;height:100%;
+  background:linear-gradient(135deg, rgba(255,105,180,0.3), rgba(144,238,144,0.2));
+  backdrop-filter:blur(6px);
+  z-index:-1;
+}
+
+/* header */
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 20px;
+  background:rgba(0,0,0,0.4);
+}
+
+/* profile top */
+.profile-top{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.profile-top img{
+  width:40px;height:40px;
+  border-radius:50%;
+  border:2px solid #ff9ed6;
+}
+
+/* container */
+.container{
+  padding:20px;
+}
+
+/* card */
+.card{
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(10px);
+  padding:20px;
+  border-radius:15px;
+  margin-bottom:20px;
+}
+
+/* avatar */
+.avatar{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  border:3px solid #ff9ed6;
+  margin:auto;
+  display:block;
+  box-shadow:0 0 15px #ff9ed6;
+}
+
+/* inputs */
+input{
+  width:100%;
+  padding:10px;
+  margin:8px 0;
+  border-radius:10px;
+  border:none;
+  outline:none;
+}
+
+/* button */
+button{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  background:linear-gradient(45deg,#ff9ed6,#90ee90);
+  font-weight:bold;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <h2>🌸 Profile</h2>
+
+  <div class="profile-top">
+    <img src="https://i.postimg.cc/QtLVtyht/ef984fd8e2ab3148a1470c4fa3586475.jpg">
+    <span><%= user.username %></span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- PROFILE CARD -->
+  <div class="card">
+    <img class="avatar" src="https://i.postimg.cc/QtLVtyht/ef984fd8e2ab3148a1470c4fa3586475.jpg">
+
+    <h3 style="text-align:center;"><%= user.username %></h3>
+    <p style="text-align:center;">Nível: <%= user.total %></p>
+
+    <hr>
+
+    <p><b>API KEY:</b></p>
+    <p><%= user.key %></p>
+
+    <p><b>Requests:</b></p>
+    <p><%= user.saldo %></p>
+  </div>
+
+  <!-- EDIT FORM -->
+  <div class="card">
+    <h3>Editar Perfil</h3>
+
+    <form action="/editar/:username<%= user.username %>" method="post">
+
+      <label>Foto URL</label>
+      <input name="ft" value="<%= user.ft %>">
+
+      <label>Senha</label>
+      <input name="password" value="<%= user.password %>">
+
+      <label>Wallpaper</label>
+      <input name="wallpaper" value="<%= user.wallpaper %>">
+
+      <label>WhatsApp</label>
+      <input name="zap" value="<%= user.zap %>">
+
+      <label>YouTube</label>
+      <input name="yt" value="<%= user.yt %>">
+
+      <label>Instagram</label>
+      <input name="insta" value="<%= user.insta %>">
+
+      <button type="submit">Salvar Alterações</button>
+
+    </form>
+  </div>
+
+</div>
+
+</body>
+</html>
