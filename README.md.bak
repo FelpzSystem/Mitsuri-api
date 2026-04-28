@@ -37,8 +37,8 @@ Clone o repositório do GitHub com o comando:
 
 ```bash
 cd /sdcard/
-git clone 
-cd mitsuriapi
+git clone https://github.com/trevo-community/TrevoApi.git
+cd TrevoApi
 ```
 
 ---
@@ -72,7 +72,7 @@ Pronto! O projeto estará rodando e pronto para uso.
 - Se o projeto estiver no armazenamento interno, use:
 
 ```bash
-cd /sdcard/mitsuriapi
+cd /sdcard/TrevoApi
 ```
 
 - Para atualizar o projeto:
@@ -83,4 +83,4 @@ git pull
 
 ---
 
-Feito por @FELPZSYSTEM
+Feito por @CLOVERMYT
